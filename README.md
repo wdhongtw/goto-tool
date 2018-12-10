@@ -7,8 +7,17 @@ A convenient tool (I hope) that:
 
 ## How to Use
 
-``` sh
-goto <bookmark>
+```
+Usage:
+    goto <mark>       chdir to some bookmark set before
+
+    goto -x           bookmark current directory (using basename)
+    goto -l           list all bookmarks
+
+    goto -a <mark> <path>
+                      add or modify bookmark <mark> point to <path>
+    goto -d <mark>    delete bookmark <mark>
+    goto -r           reset all bookmarks
 ```
 
 ## How to Install

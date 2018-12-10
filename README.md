@@ -32,5 +32,14 @@ for file in $HOME/.config/bashrc.d/*; do
 done
 ```
 
+Also, add `$HOME/.local/bin` to `$PATH` in your `.profile`
+
+``` sh
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+```
+
 The bookmarks is stored as a JSON file in `$HOME/.config/goto-tool/bookmarks`
 and will not be deleted by default when uninstall.

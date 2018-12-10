@@ -21,7 +21,7 @@ class BookmarkManager():
             marks = json.load(bookmarks)
         yield marks
         with open(self._bookmarks_file, 'w') as bookmarks:
-            json.dump(marks, bookmarks, indent=4)
+            json.dump(marks, bookmarks, indent=4, sort_keys=True)
 
     def query(self, mark):
         with self._auto_sync_marks() as marks:
@@ -104,7 +104,7 @@ def _main():
         print(mark, end='')
     elif args.search:
         marks = manager.search(*args.search)
-        for mark in marks:
+        for mark in sorted(marks.keys()):
             print(mark)
     elif args.add:
         manager.add(*args.add)
@@ -113,7 +113,7 @@ def _main():
             sys.exit('Mark not exist in bookmarks')
     elif args.list:
         marks = manager.search('')
-        for mark, directory in marks.items():
+        for mark, directory in sorted(marks.items()):
             print('{:10s}  {:s}'.format(mark, directory))
     else:
         pass

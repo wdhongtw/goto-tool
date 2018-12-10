@@ -13,6 +13,7 @@ class BookmarkManager():
         if not os.path.exists(self._bookmarks_file):
             with open(self._bookmarks_file, 'w') as bookmarks:
                 json.dump({}, bookmarks, indent=4)
+            self.reset()
 
     @contextlib.contextmanager
     def _auto_sync_marks(self):

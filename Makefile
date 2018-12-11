@@ -11,9 +11,9 @@ FRONTEND_BASH = $(BASH_CONFIG_DIR)/goto.bash
 
 install:
 	mkdir -p "$(BIN_DIR)"
-	ln -s "$(BACKEND_SRC)" "$(BACKEND_BIN)"
+	[ -h "$(BACKEND_BIN)" ] || ln -s "$(BACKEND_SRC)" "$(BACKEND_BIN)"
 	mkdir -p "$(BASH_CONFIG_DIR)"
-	ln -s "$(FRONTEND_SRC)" "$(FRONTEND_BASH)"
+	[ -h "$(FRONTEND_BASH)" ] || ln -s "$(FRONTEND_SRC)" "$(FRONTEND_BASH)"
 
 uninstall:
 	$(RM) $(BACKEND_BIN)

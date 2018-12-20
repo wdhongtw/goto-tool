@@ -91,6 +91,14 @@ def _parse_args():
     return parser.parse_args()
 
 
+def _print_all_marks(marks):
+    print('{:16s}{:s}'.format('Mark', 'Path'))
+    print('============================================================')
+    for mark, directory in sorted(marks.items()):
+        render_mark = mark if len(mark) < 16 else mark[:13] + '..'
+        print('{:16s}{:s}'.format(render_mark, directory))
+
+
 def _main():
     args = _parse_args()
     manager = BookmarkManager(_get_config_dir())
@@ -108,13 +116,15 @@ def _main():
             print(mark)
     elif args.add:
         manager.add(*args.add)
+        print('Add mark {} point to {}'.format(*args.add))
     elif args.delete:
         if not manager.delete(*args.delete):
             sys.exit('Mark not exist in bookmarks')
+        print('Delete mark {}'.format(*args.delete))
     elif args.list:
         marks = manager.search('')
-        for mark, directory in sorted(marks.items()):
-            print('{:10s}  {:s}'.format(mark, directory))
+        _print_all_marks(marks)
+
     else:
         pass
 
